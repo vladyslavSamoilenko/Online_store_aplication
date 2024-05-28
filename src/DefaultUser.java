@@ -1,4 +1,4 @@
-public class DefaultUser implements User{
+public class DefaultUser implements User {
     private int id;
 
     private String firstName;
@@ -17,7 +17,6 @@ public class DefaultUser implements User{
         this.password = password;
         this.email = email;
     }
-
     @Override
     public String getFirstName() {
         return firstName;

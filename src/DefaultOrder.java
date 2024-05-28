@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class DefaultOrder implements Order{
+public class DefaultOrder implements Order {
     private static final int AMOUNT_OF_DIGITS_IN_CREDIT_CARD_NUMBER = 16;
 
     private String creditCardNumber;
