@@ -1,3 +1,5 @@
+package enteties;
+
 public interface User {
     String getFirstName();
     String getLastName();

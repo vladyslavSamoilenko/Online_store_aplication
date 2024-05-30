@@ -1,3 +1,5 @@
+package enteties;
+
 public interface Order {
     boolean isCreditCardNumberValid(String userInput);
     void setCreditCardNumber(String userInput);
