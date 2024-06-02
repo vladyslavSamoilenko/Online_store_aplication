@@ -17,21 +17,20 @@ public class DefaultProduct implements Product {
 
     @Override
     public int getId() {
-        return 0;
+        return this.id;
     }
 
     @Override
     public String getProductName() {
-        return null;
+        return productName;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     @Override
     public String toString() {
-        return "enteties.impl.DefaultProduct{" +
-                "id=" + id +
-                ", productName='" + productName + '\'' +
-                ", categoryName='" + categoryName + '\'' +
-                ", price=" + price +
-                '}';
+        return getId() + " : " + getProductName() + " | price : " + getPrice();
     }
 }
