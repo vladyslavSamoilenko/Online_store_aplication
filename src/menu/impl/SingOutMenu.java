@@ -12,7 +12,9 @@ public class SingOutMenu implements Menu {
 
     @Override
     public void start() {
-        // <write your code here>
+        printMenuHeader();
+        context.setLoggedInUser(null);
+        System.out.println("Have a nice day! Look forward to welcoming back");
     }
 
     @Override
