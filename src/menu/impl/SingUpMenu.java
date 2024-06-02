@@ -29,13 +29,13 @@ public class SingUpMenu implements Menu {
         System.out.println("Please , enter your password");
         String password = sc.next();
         System.out.println("Please, enter your email");
-        String userEmail = sc.nextLine();
+        String userEmail = sc.next();
 
         User user = new DefaultUser(firstName, lastName, password, userEmail);
 
         String errorMessage = userManagementService.registerUser(user);
         if (errorMessage == null || errorMessage.isEmpty()){
-            context.getLoggedInUser(user);
+            context.setLoggedInUser(user);
             System.out.println("New user is created");
         }else {
             System.out.println(errorMessage);
