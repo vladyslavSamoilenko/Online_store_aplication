@@ -37,28 +37,11 @@ public class DefaultUserManagementService implements UserManagementService {
             return errorMessage;
         }
         if(users.length <= userIndex){
-            users = Arrays.copyOf(users,users.length << 1);
+            users = Arrays.copyOf(users,users.length * 2);
         }
 
         users[userIndex++] = user;
         return NO_ERROR_MESSAGE;
-//        String userEmail = user.getEmail();
-//        if(user.getEmail().equals("")){
-//            return EMPTY_EMAIL_ERROR_MESSAGE;
-//        }else {
-//            boolean exist = false;
-//            for (User user1: users) {
-//            if (user.getEmail().equals(userEmail)){
-//                exist = true;
-//            }
-//
-//            }
-//            if(!exist){
-//                users[userIndex++] = user;
-//                return NO_ERROR_MESSAGE;
-//            }
-//        }
-//        return NOT_UNIQUE_EMAIL_ERROR_MESSAGE;
     }
 
     private String checkUniqueEmail(String email) {
@@ -66,7 +49,7 @@ public class DefaultUserManagementService implements UserManagementService {
             return EMPTY_EMAIL_ERROR_MESSAGE;
         }
         for (User user : users) {
-            if(email != null && user.getEmail() != null && user.getEmail().equalsIgnoreCase(email)){
+            if(user != null && user.getEmail() != null && user.getEmail().equalsIgnoreCase(email)){
                 return NOT_UNIQUE_EMAIL_ERROR_MESSAGE;
             }
 
