@@ -1,17 +1,26 @@
+package enteties.impl;
+
+import enteties.User;
+
 public class DefaultUser implements User {
-    private int id;
+    private static int id = 1;
+
+    private static int userCount;
 
     private String firstName;
     private String lastName;
     private String password;
     private String email;
 
+    {
+      id = ++userCount;
+    }
+
     public DefaultUser() {
 
     }
 
-    public DefaultUser(int id,String firstName, String lastName, String password, String email) {
-        this.id = id;
+    public DefaultUser(String firstName, String lastName, String password, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -44,19 +53,32 @@ public class DefaultUser implements User {
 
     @Override
     public void setPassword(String newPassword) {
+        if (newPassword == null){
+            return;
+        }
         password = newPassword;
     }
 
     @Override
     public void setEmail(String newEmail) {
+        if(newEmail == null){
+            return;
+        }
         email = newEmail;
     }
 
     public void clearState(){
-        this.id = 0;
-        this.firstName = null;
-        this.lastName = null;
-        this.password = null;
-        this.email = null;
+        this.userCount = 0;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

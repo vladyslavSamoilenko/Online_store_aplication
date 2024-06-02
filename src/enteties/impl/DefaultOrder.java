@@ -1,3 +1,8 @@
+package enteties.impl;
+
+import enteties.Order;
+import enteties.Product;
+
 import java.util.Arrays;
 
 public class DefaultOrder implements Order {
@@ -34,7 +39,7 @@ public class DefaultOrder implements Order {
 
     @Override
     public String toString() {
-        return "DefaultOrder{" +
+        return "enteties.impl.DefaultOrder{" +
                 "creditCardNumber='" + creditCardNumber + '\'' +
                 ", products=" + Arrays.toString(products) +
                 ", customerId=" + customerId +

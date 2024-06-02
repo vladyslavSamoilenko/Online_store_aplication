@@ -36,7 +36,7 @@ public class SingUpMenu implements Menu {
         String errorMessage = userManagementService.registerUser(user);
         if (errorMessage == null || errorMessage.isEmpty()){
             context.getLoggedInUser(user);
-            System.out.println("Nwq user is created");
+            System.out.println("New user is created");
         }else {
             System.out.println(errorMessage);
         }

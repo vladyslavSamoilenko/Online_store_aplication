@@ -1,3 +1,10 @@
+package configs;
+
+import enteties.Cart;
+import enteties.User;
+import enteties.impl.DefaultCart;
+import menu.Menu;
+
 public class ApplicationContext {
     private static ApplicationContext instance;
 
@@ -15,7 +22,10 @@ public class ApplicationContext {
         this.loggedInUser = user;
     }
 
-    public User getLoggedInUser() {
+    public User getLoggedInUser(User user) {
+        return this.loggedInUser;
+    }
+    public User getLoggedInUser(){
         return this.loggedInUser;
     }
 
