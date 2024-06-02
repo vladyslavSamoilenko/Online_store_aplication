@@ -46,7 +46,7 @@ public class DefaultProductManagementService implements ProductManagementService
 
     @Override
     public Product getProductById(int productIdToAddToCart) {
-        // <write your code here>
-        return null;
+
+        return products[productIdToAddToCart - 1];
     }
 }

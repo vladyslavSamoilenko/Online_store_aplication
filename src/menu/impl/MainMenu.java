@@ -10,7 +10,7 @@ public class MainMenu implements Menu {
 
     private static final String MAIN_MENU_TEXT_FOR_LOGGED_OUT_USER = "Please, enter number in console to proceed." + System.lineSeparator()
             + "1. Sign Up" + System.lineSeparator() + "2. Sign In"
-            + System.lineSeparator() + " 3.Product Catalog" + System.lineSeparator()
+            + System.lineSeparator() + "3.Product Catalog" + System.lineSeparator()
             + "4. My Orders" + System.lineSeparator() + "5. Settings" + System.lineSeparator() +
             "6. Customer List";
 
