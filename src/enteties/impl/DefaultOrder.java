@@ -39,7 +39,7 @@ public class DefaultOrder implements Order {
 
     @Override
     public String toString() {
-        return "enteties.impl.DefaultOrder{" +
+        return "Order{" +
                 "creditCardNumber='" + creditCardNumber + '\'' +
                 ", products=" + Arrays.toString(products) +
                 ", customerId=" + customerId +

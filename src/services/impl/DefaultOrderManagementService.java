@@ -1,12 +1,20 @@
 package services.impl;
 
 import enteties.Order;
+import enteties.Product;
 import services.OrderManagementService;
 
 public class DefaultOrderManagementService implements OrderManagementService {
 
     public static final int DEFAULT_ORDER_CAPACITY = 10;
     private static DefaultOrderManagementService instance;
+
+    private Product [] order;
+
+    {
+        order = new Product[DEFAULT_ORDER_CAPACITY];
+    }
+
     public static OrderManagementService getInstance() {
         if (instance == null) {
             instance = new DefaultOrderManagementService();

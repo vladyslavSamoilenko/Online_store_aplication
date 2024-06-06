@@ -59,35 +59,6 @@ public class ProductCatalogMenu implements Menu {
             }
         }
         menuToNavigate.start();
-//        printMenuHeader();
-//        for (Product product : productManagementService.getProducts()) {
-//            System.out.println(product);
-//        }
-//        while (true) {
-//            if(context.getLoggedInUser() == null){
-//                System.out.println("Please sign in or sign up");
-//                break;
-//            }
-//            Scanner sc = new Scanner(System.in);
-//            System.out.println("Enter product id to add it to the cart or menu if you want to navigate back to the main menu");
-//            String choose = sc.nextLine();
-//
-//            if (Character.isDigit(Integer.parseInt(choose))) {
-//                if (Integer.parseInt(choose) < 1 && Integer.parseInt(choose) > productManagementService.getProducts().length){
-//                    System.out.println("Wrong choose");
-//                }else {
-//                    int productIndex = Integer.parseInt(choose);
-//                    context.getSessionCart().addProduct(productManagementService.getProductById(productIndex));
-//                    System.out.println("Product " + productManagementService.getProductById(productIndex).getProductName() + " has been added to your cart");
-//                }
-//            }
-//            else if (choose.equals("menu")) {
-//                //TODO go to the main menu
-//
-//            } else {
-//                System.out.println("Unknown command");
-//            }
-//        }
 
     }
 
