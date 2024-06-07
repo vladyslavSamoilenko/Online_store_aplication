@@ -32,6 +32,8 @@ public class CheckoutMenu implements Menu {
             //zakaz oformlenie
             Order order = new DefaultOrder();
             order.setProducts(context.getSessionCart().getProductsInCart());
+            order.setCustomerId(context.getLoggedInUser().getId());
+            order.setCreditCardNumber(cardNumber);
             orderManagementService.addOrder(order);
             System.out.println("Thanks a lot for your purchase. Details about order delivery are sent to your email.");
             menuToNavigate = new MainMenu();
