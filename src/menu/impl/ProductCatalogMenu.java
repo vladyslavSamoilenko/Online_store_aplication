@@ -41,8 +41,8 @@ public class ProductCatalogMenu implements Menu {
                 break;
             }
             if (userInput.equalsIgnoreCase(CHECKOUT_COMMAND)){
-                Cart sessionCart = context.getSessionCart();
-                if ( sessionCart == null || sessionCart.isEmpty()){
+
+                if ( context.getSessionCart() == null || context.getSessionCart().isEmpty()){
                     System.out.println("Your cart is empty. Please, add product to cart first and then proceed with checkout");
                 }else {
                     menuToNavigate = new CheckoutMenu();
