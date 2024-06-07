@@ -12,6 +12,7 @@ public class DefaultOrderManagementService implements OrderManagementService {
 
     private Product [] orders;
     private static Order [] allOrders;
+    private static int index = 0;
     {
         allOrders = new Order[DEFAULT_ALL_ORDER_CAPACITY];
     }
@@ -28,20 +29,35 @@ public class DefaultOrderManagementService implements OrderManagementService {
     }
     @Override
     public void addOrder(Order order) {
-        //TODO
+        if (order != null){
+            allOrders[index++] = order;
+        }
     }
 
     @Override
     public Order[] getOrderByUserId(int userId) {
-        return null;//TODO
+        int count = 0;
+        for (Order order: allOrders){
+            if(order.getCustomerId() == userId){
+                count++;
+            }
+        }
+
+        int index = 0;
+        Order [] newOrders = new Order[count];
+        for (Order order: allOrders){
+            newOrders[index++] = order;
+        }
+        return newOrders;
     }
 
     @Override
     public Order[] getOrders() {
-        return null;//TODO
+        return allOrders;
     }
 
     void clearServiceState(){
-        //TODO
+        orders = new Product[DEFAULT_ORDER_CAPACITY];
+        index = 0;
     }
 }
