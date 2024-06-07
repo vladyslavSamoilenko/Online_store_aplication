@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class DefaultCart implements Cart {
     private Product [] productsInCart;
-    private static final int DEFAULT_CART_CAPACITY = 5;
+    private static final int DEFAULT_CART_CAPACITY = 10;
     private static int productLastIndex = 0;
 
     private int productsCount = 0;
@@ -18,10 +18,19 @@ public class DefaultCart implements Cart {
 
     @Override
     public boolean isEmpty() {
-        if(productsCount == 0){
+        if (productsInCart == null || productsInCart.length == 0){
             return true;
         }
-        return false;
+        for (Product product: productsInCart){
+            if (product != null){
+                return false;
+            }
+        }
+        return true;
+//        if(productsCount == 0){
+//            return true;
+//        }
+//        return false;
     }
 
     @Override
@@ -30,7 +39,7 @@ public class DefaultCart implements Cart {
             return;
         }
             if(productsInCart.length <= productLastIndex){
-                productsInCart = Arrays.copyOf(productsInCart, productsInCart.length * 2);
+                productsInCart = Arrays.copyOf(productsInCart, productsInCart.length << 1);
             }
             productsInCart[productLastIndex++] = product;
     }
