@@ -14,21 +14,33 @@ public class DefaultOrder implements Order {
 
     @Override
     public boolean isCreditCardNumberValid(String userInput) {
+        if(userInput != null || userInput.length() == AMOUNT_OF_DIGITS_IN_CREDIT_CARD_NUMBER ){
+            if (userInput.matches("\\d+")){
+                return true;
+            }
+            return false;
+        }
         return false;
     }
 
     @Override
     public void setCreditCardNumber(String userInput) {
+        if(isCreditCardNumberValid(userInput)){
+            this.creditCardNumber = userInput;
+        }else {
+            System.out.println("You entered invalid credit card number. Valid credit card should contain 16 digits. Please, try one more time.");
+        }
 
     }
 
     @Override
     public void setProducts(Product[] products) {
-
+        this.products = products;
     }
 
     @Override
     public void setCustomerId(int customerId) {
+        this.customerId = customerId;
 
     }
 
@@ -36,6 +48,8 @@ public class DefaultOrder implements Order {
     public int getCustomerId() {
         return this.customerId;
     }
+
+
 
     @Override
     public String toString() {

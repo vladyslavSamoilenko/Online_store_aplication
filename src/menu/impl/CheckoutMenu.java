@@ -1,6 +1,9 @@
 package menu.impl;
 
 import configs.ApplicationContext;
+import enteties.Cart;
+import enteties.Order;
+import enteties.impl.DefaultOrder;
 import menu.Menu;
 import services.OrderManagementService;
 import services.impl.DefaultOrderManagementService;
@@ -27,6 +30,9 @@ public class CheckoutMenu implements Menu {
 
         } else {
             //zakaz oformlenie
+            Order order = new DefaultOrder();
+            order.setProducts(context.getSessionCart().getProductsInCart());
+            orderManagementService.addOrder(order);
             System.out.println("Thanks a lot for your purchase. Details about order delivery are sent to your email.");
             menuToNavigate = new MainMenu();
         }

@@ -7,12 +7,17 @@ import services.OrderManagementService;
 public class DefaultOrderManagementService implements OrderManagementService {
 
     public static final int DEFAULT_ORDER_CAPACITY = 10;
+    public static final int DEFAULT_ALL_ORDER_CAPACITY = 100;
     private static DefaultOrderManagementService instance;
 
-    private Product [] order;
+    private Product [] orders;
+    private static Order [] allOrders;
+    {
+        allOrders = new Order[DEFAULT_ALL_ORDER_CAPACITY];
+    }
 
     {
-        order = new Product[DEFAULT_ORDER_CAPACITY];
+        orders = new Product[DEFAULT_ORDER_CAPACITY];
     }
 
     public static OrderManagementService getInstance() {

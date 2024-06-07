@@ -53,7 +53,6 @@ public class DefaultCart implements Cart {
         }
 
         return nonNullProducts;
-//        return productsInCart;
     }
 
     @Override
