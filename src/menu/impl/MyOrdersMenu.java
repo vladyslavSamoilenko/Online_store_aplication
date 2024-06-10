@@ -5,6 +5,8 @@ import menu.Menu;
 import services.OrderManagementService;
 import services.impl.DefaultOrderManagementService;
 
+import java.util.Arrays;
+
 public class MyOrdersMenu implements Menu {
     private ApplicationContext context;
     private OrderManagementService orderManagementService;
@@ -16,7 +18,17 @@ public class MyOrdersMenu implements Menu {
 
     @Override
     public void start() {
-        // <write your code here>
+        Menu navigateMenu;
+        if (context.getLoggedInUser() == null){
+            System.out.println("Please, log in or create new account to see list of your orders");
+            navigateMenu = new MainMenu();
+        }else if(orderManagementService.getOrdersByUserId(context.getLoggedInUser().getId()).length == 0){
+            System.out.println("Unfortunately, you don’t have any orders yet. Navigate back to main menu to place a new order");
+            navigateMenu = new MainMenu();
+        } else {
+            System.out.println(Arrays.toString(orderManagementService.getOrdersByUserId(context.getLoggedInUser().getId())));
+            navigateMenu = new MainMenu();
+        }
     }
 
     @Override

@@ -5,16 +5,12 @@ import enteties.User;
 public class DefaultUser implements User {
     private static int id = 1;
 
-    private static int userCount;
+    private static int userCount=0;
 
     private String firstName;
     private String lastName;
     private String password;
     private String email;
-
-    {
-      id = ++userCount;
-    }
 
     public DefaultUser() {
 
@@ -25,6 +21,7 @@ public class DefaultUser implements User {
         this.lastName = lastName;
         this.password = password;
         this.email = email;
+        id = ++userCount;
     }
     @Override
     public String getFirstName() {
@@ -68,7 +65,7 @@ public class DefaultUser implements User {
     }
 
     public void clearState(){
-        this.userCount = 0;
+        userCount = 0;
     }
 
     @Override

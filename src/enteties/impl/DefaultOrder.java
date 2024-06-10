@@ -12,6 +12,9 @@ public class DefaultOrder implements Order {
     private Product [] products;
     private int customerId;
 
+    public DefaultOrder() {
+    }
+
     @Override
     public boolean isCreditCardNumberValid(String userInput) {
         if(userInput != null || userInput.length() == AMOUNT_OF_DIGITS_IN_CREDIT_CARD_NUMBER ){

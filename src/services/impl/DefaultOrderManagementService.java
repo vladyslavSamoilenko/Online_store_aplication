@@ -1,24 +1,21 @@
 package services.impl;
 
 import enteties.Order;
-import enteties.Product;
 import services.OrderManagementService;
+
+import java.util.Arrays;
 
 public class DefaultOrderManagementService implements OrderManagementService {
 
     public static final int DEFAULT_ORDER_CAPACITY = 10;
-    public static final int DEFAULT_ALL_ORDER_CAPACITY = 100;
     private static DefaultOrderManagementService instance;
 
-    private Product [] orders;
-    private static Order [] allOrders;
+    private static  Order [] orders;
     private static int index = 0;
-    {
-        allOrders = new Order[DEFAULT_ALL_ORDER_CAPACITY];
-    }
+    private static int totalCount = 0;
 
     {
-        orders = new Product[DEFAULT_ORDER_CAPACITY];
+        orders = new Order[DEFAULT_ORDER_CAPACITY];
     }
 
     public static OrderManagementService getInstance() {
@@ -29,35 +26,61 @@ public class DefaultOrderManagementService implements OrderManagementService {
     }
     @Override
     public void addOrder(Order order) {
-        if (order != null){
-            allOrders[index++] = order;
+        if (order == null){
+            return;
         }
+        if (DefaultOrderManagementService.orders.length <= index){
+            orders = Arrays.copyOf(orders,orders.length << 1);
+        }
+        orders[index++] = order;
+        totalCount++;
+
     }
 
     @Override
-    public Order[] getOrderByUserId(int userId) {
+    public Order[] getOrdersByUserId(int userId) {
+        if (totalCount == 0){
+            return new Order[0];
+        }
+
         int count = 0;
-        for (Order order: allOrders){
-            if(order.getCustomerId() == userId){
+        for (Order order : orders){
+            if (order == null){
+                break;
+            }
+            else if(order.getCustomerId() == userId){
                 count++;
             }
         }
-
-        int index = 0;
-        Order [] newOrders = new Order[count];
-        for (Order order: allOrders){
-            newOrders[index++] = order;
+        if (count == 0){
+            System.out.println("Unfortunately, you don’t have any orders yet. Navigate back to main menu to place a new order");
+            return new Order[0];
         }
-        return newOrders;
+
+        Order [] userOrders = new Order[count];
+        int index = 0;
+
+        for (Order order: orders){
+            if(order == null){
+                break;
+            }
+            else if (order.getCustomerId() == userId){
+                userOrders[index++] =order;
+            }
+        }
+        return userOrders;
+
     }
 
     @Override
     public Order[] getOrders() {
-        return allOrders;
+        return orders;
     }
 
     void clearServiceState(){
-        orders = new Product[DEFAULT_ORDER_CAPACITY];
+        orders = new Order[DEFAULT_ORDER_CAPACITY];
         index = 0;
     }
+
+
 }
