@@ -15,6 +15,9 @@ public class DefaultProduct implements Product {
         this.price = price;
     }
 
+    public DefaultProduct() {
+    }
+
     @Override
     public int getId() {
         return this.id;

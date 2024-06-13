@@ -3,11 +3,14 @@ package menu.impl;
 import configs.ApplicationContext;
 import menu.Menu;
 
-public class SingOutMenu implements Menu {
+public class SignOutMenu implements Menu {
     private ApplicationContext context;
 
     {
         context = ApplicationContext.getInstance();
+    }
+
+    public SignOutMenu() {
     }
 
     @Override

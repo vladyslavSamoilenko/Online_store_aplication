@@ -16,6 +16,10 @@ public class SingInMenu implements Menu {
         context = ApplicationContext.getInstance();
         userManagementService = DefaultUserManagementService.getInstance();
     }
+
+    public SingInMenu() {
+    }
+
     @Override
     public void start() {
         printMenuHeader();

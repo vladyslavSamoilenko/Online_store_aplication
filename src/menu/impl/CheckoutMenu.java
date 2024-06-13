@@ -1,7 +1,6 @@
 package menu.impl;
 
 import configs.ApplicationContext;
-import enteties.Cart;
 import enteties.Order;
 import enteties.impl.DefaultOrder;
 import menu.Menu;
@@ -25,19 +24,27 @@ public class CheckoutMenu implements Menu {
         Menu menuToNavigate = null;
         Scanner sc = new Scanner(System.in);
         String cardNumber = sc.next();
-        if (cardNumber == null || cardNumber.length() != 16) {
-            System.out.println("You entered invalid credit card number. Valid credit card should contain 16 digits. Please, try one more time.");
 
-        } else {
-            //zakaz oformlenie
-            Order order = new DefaultOrder();
-            order.setProducts(context.getSessionCart().getProductsInCart());
-            order.setCustomerId(context.getLoggedInUser().getId());
-            order.setCreditCardNumber(cardNumber);
-            orderManagementService.addOrder(order);
-            System.out.println("Thanks a lot for your purchase. Details about order delivery are sent to your email.");
-            menuToNavigate = new MainMenu();
+        if (!createOrder(cardNumber)) {
+            System.out.println("You entered invalid credit card number. Valid credit card should contain 16 digits. Please, try one more time.");
+            start();
         }
+        context.getSessionCart().clear();
+        menuToNavigate = new MainMenu();
+    }
+
+    private boolean createOrder(String cardNumber) {
+        Order order = new DefaultOrder();
+        if (!order.isCreditCardNumberValid(cardNumber)) {
+            return false;
+        }
+        order.setProducts(context.getSessionCart().getProducts());
+        order.setCustomerId(context.getLoggedInUser().getId());
+        order.setCreditCardNumber(cardNumber);
+        orderManagementService.addOrder(order);
+        System.out.println("Thanks a lot for your purchase. Details about order delivery are sent to your email.");
+        return true;
+
     }
 
     @Override

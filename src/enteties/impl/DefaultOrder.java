@@ -17,14 +17,19 @@ public class DefaultOrder implements Order {
 
     @Override
     public boolean isCreditCardNumberValid(String userInput) {
-        if(userInput != null || userInput.length() == AMOUNT_OF_DIGITS_IN_CREDIT_CARD_NUMBER ){
-            if (userInput.matches("\\d+")){
-                return true;
-            }
-            return false;
-        }
-        return false;
+        return userInput != null && userInput.length() == AMOUNT_OF_DIGITS_IN_CREDIT_CARD_NUMBER && !userInput.contains(" ") && Long.parseLong(userInput) > 0;
     }
+
+//    private static boolean hasOnlyDigits(String userInput) {
+//        for (int i = 0 ; i < userInput.length(); i++){
+//            if (Character.isDigit(userInput.charAt(i))){
+//                continue;
+//            }else {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
     @Override
     public void setCreditCardNumber(String userInput) {

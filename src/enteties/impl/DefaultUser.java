@@ -3,9 +3,8 @@ package enteties.impl;
 import enteties.User;
 
 public class DefaultUser implements User {
-    private static int id = 1;
+    private static int id = 0;
 
-    private static int userCount=0;
 
     private String firstName;
     private String lastName;
@@ -13,7 +12,7 @@ public class DefaultUser implements User {
     private String email;
 
     public DefaultUser() {
-
+        id++;
     }
 
     public DefaultUser(String firstName, String lastName, String password, String email) {
@@ -21,7 +20,7 @@ public class DefaultUser implements User {
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        id = ++userCount;
+        id++;
     }
     @Override
     public String getFirstName() {
@@ -65,7 +64,7 @@ public class DefaultUser implements User {
     }
 
     public void clearState(){
-        userCount = 0;
+        id = 0;
     }
 
     @Override

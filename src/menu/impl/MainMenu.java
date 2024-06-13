@@ -54,7 +54,7 @@ public class MainMenu implements Menu {
                         if (context.getLoggedInUser() == null){
                             menuToNavigate = new SingInMenu();
                         }else {
-                            menuToNavigate = new SingOutMenu();
+                            menuToNavigate = new SignOutMenu();
                         }
                         break mainLoop;
                     } else if (commandNumber == 3) {
