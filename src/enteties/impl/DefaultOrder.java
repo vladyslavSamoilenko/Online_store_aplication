@@ -4,12 +4,13 @@ import enteties.Order;
 import enteties.Product;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class DefaultOrder implements Order {
     private static final int AMOUNT_OF_DIGITS_IN_CREDIT_CARD_NUMBER = 16;
 
     private String creditCardNumber;
-    private Product [] products;
+    private List<Product> products;
     private int customerId;
 
     public DefaultOrder() {
@@ -20,16 +21,6 @@ public class DefaultOrder implements Order {
         return userInput != null && userInput.length() == AMOUNT_OF_DIGITS_IN_CREDIT_CARD_NUMBER && !userInput.contains(" ") && Long.parseLong(userInput) > 0;
     }
 
-//    private static boolean hasOnlyDigits(String userInput) {
-//        for (int i = 0 ; i < userInput.length(); i++){
-//            if (Character.isDigit(userInput.charAt(i))){
-//                continue;
-//            }else {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
 
     @Override
     public void setCreditCardNumber(String userInput) {
@@ -42,7 +33,7 @@ public class DefaultOrder implements Order {
     }
 
     @Override
-    public void setProducts(Product[] products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
@@ -63,7 +54,7 @@ public class DefaultOrder implements Order {
     public String toString() {
         return "Order{" +
                 "creditCardNumber='" + creditCardNumber + '\'' +
-                ", products=" + Arrays.toString(products) +
+                ", products=" + products +
                 ", customerId=" + customerId +
                 '}';
     }

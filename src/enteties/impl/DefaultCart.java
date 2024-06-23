@@ -3,20 +3,20 @@ package enteties.impl;
 import enteties.Cart;
 import enteties.Product;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class DefaultCart implements Cart {
-    private Product [] products;
-    private static final int DEFAULT_CART_CAPACITY = 10;
-    private int productLastIndex = 0;
+    private List<Product> products;
 
     {
-        products = new Product[DEFAULT_CART_CAPACITY];
+        products = new ArrayList<>();
     }
 
     @Override
     public boolean isEmpty() {
-        if (products == null || products.length == 0){
+        if (products == null || products.size() == 0){
             return true;
         }
         for (Product product: products){
@@ -25,10 +25,6 @@ public class DefaultCart implements Cart {
             }
         }
         return true;
-//        if(productsCount == 0){
-//            return true;
-//        }
-//        return false;
     }
 
     @Override
@@ -36,35 +32,24 @@ public class DefaultCart implements Cart {
         if(product == null){
             return;
         }
-            if(products.length <= productLastIndex){
-                products = Arrays.copyOf(products, products.length << 1 );
-            }
-            products[productLastIndex++] = product;
+        products.add(product);
     }
 
 @Override
-    public Product[] getProducts() {
-        int nonNullProductsAmount = 0;
+    public List <Product> getProducts() {
+        List <Product> newList = new ArrayList<>();
         for (Product product : products) {
             if (product != null) {
-                nonNullProductsAmount++;
+                newList.add(product);
             }
         }
 
-        Product[] nonNullProducts = new Product[nonNullProductsAmount];
-        int index = 0;
-        for (Product product : products) {
-            if (product != null) {
-                nonNullProducts[index++] = product;
-            }
-        }
-
-        return nonNullProducts;
+        return newList;
     }
 
     @Override
     public void clear() {
-        products = new Product[DEFAULT_CART_CAPACITY];
+        products.clear();
     }
 
 }
