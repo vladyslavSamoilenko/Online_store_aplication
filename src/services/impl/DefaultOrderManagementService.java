@@ -1,21 +1,20 @@
 package services.impl;
 
 import enteties.Order;
+import enteties.impl.DefaultOrder;
 import services.OrderManagementService;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class DefaultOrderManagementService implements OrderManagementService {
 
-    public static final int DEFAULT_ORDER_CAPACITY = 10;
     private static DefaultOrderManagementService instance;
-
-    private static Order[] orders;
-    private static int index = 0;
-    private static int totalCount = 0;
+    private static List<Order> orders;
 
     {
-        orders = new Order[DEFAULT_ORDER_CAPACITY];
+        orders = new ArrayList<>();
     }
 
     public static OrderManagementService getInstance() {
@@ -29,43 +28,33 @@ public class DefaultOrderManagementService implements OrderManagementService {
     public void addOrder(Order order) {
         if (order == null) {
             return;
-        } else {
-            if (orders.length <= index) {
-                orders = Arrays.copyOf(orders, orders.length << 1);
-            }
-            orders[index++] = order;
-            totalCount++;
         }
-
+        orders.add(order);
     }
 
     @Override
-    public Order[] getOrdersByUserId(int userId) {
-        if (totalCount == 0) {
-            return new Order[0];
-        }
+    public List<Order> getOrdersByUserId(int userId) {
 
-        int count = 0;
+         int count = 0;
         for (Order order : orders) {
             if (order == null) {
                 break;
             } else if (order.getCustomerId() == userId) {
                 count++;
+                break;
             }
         }
         if (count == 0) {
             System.out.println("Unfortunately, you don’t have any orders yet. Navigate back to main menu to place a new order");
-            return new Order[0];
+            return new ArrayList<>();
         }
 
-        Order[] userOrders = new Order[count];
-        int index = 0;
-
+        List<Order> userOrders = new ArrayList<>();
         for (Order order : orders) {
             if (order == null) {
                 break;
             } else if (order.getCustomerId() == userId) {
-                userOrders[index++] = order;
+                userOrders.add(order);
             }
         }
         return userOrders;
@@ -73,27 +62,18 @@ public class DefaultOrderManagementService implements OrderManagementService {
     }
 
     @Override
-    public Order[] getOrders() {
-        int count = 0;
+    public List<Order> getOrders() {
+        List<Order> nonNullOrders = new ArrayList<>();
         for (Order order: orders){
-            if(order != null){
-                count++;
-            }
-        }
-
-        int index = 0;
-        Order [] nonNullOrders = new Order[count];
-        for (Order order: orders){
-            if(order != null){
-                nonNullOrders[index++] = order;
+            if (order != null){
+                nonNullOrders.add(order);
             }
         }
         return nonNullOrders;
     }
 
     void clearServiceState() {
-        orders = new Order[DEFAULT_ORDER_CAPACITY];
-        index = 0;
+        orders.clear();
     }
 
 

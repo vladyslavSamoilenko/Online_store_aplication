@@ -22,11 +22,11 @@ public class MyOrdersMenu implements Menu {
         if (context.getLoggedInUser() == null){
             System.out.println("Please, log in or create new account to see list of your orders");
             navigateMenu = new MainMenu();
-        }else if(orderManagementService.getOrdersByUserId(context.getLoggedInUser().getId()).length == 0){
+        }else if(orderManagementService.getOrdersByUserId(context.getLoggedInUser().getId()).size() == 0){
             System.out.println("Unfortunately, you don’t have any orders yet. Navigate back to main menu to place a new order");
             navigateMenu = new MainMenu();
         } else {
-            System.out.println(Arrays.toString(orderManagementService.getOrdersByUserId(context.getLoggedInUser().getId())));
+            System.out.println(orderManagementService.getOrdersByUserId(context.getLoggedInUser().getId()));
             navigateMenu = new MainMenu();
         }
     }
