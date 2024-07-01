@@ -27,13 +27,19 @@ public class DefaultProduct implements Product {
     public String getProductName() {
         return productName;
     }
-
+    @Override
     public double getPrice() {
         return price;
     }
 
     @Override
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+
+    @Override
     public String toString() {
-        return getId() + " : " + getProductName() + " | price : " + getPrice();
+        return getId() + " : " + getProductName() + "|" + getCategoryName()  +" | price : " + getPrice();
     }
 }
